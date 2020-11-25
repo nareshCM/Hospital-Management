@@ -77,7 +77,7 @@ public class PatientServiceImplementationTest {
 		patientDetailList.add(patientDetail);
 		doNothing().when(patientRepo).deleteById("1");
 		doReturn(1L).when(patientRepo).count();
-		assertEquals(0, patientService.deletePatientService("1").size());
+		assertEquals(0, patientService.patients("1").size());
 	}
 	
 }

@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.hospital.management.model.DoctorDetail;
 import org.hospital.management.model.PatientDetail;
-import org.hospital.management.service.PatientService;
+import org.hospital.management.service.PatientServiceInterface;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,7 +27,7 @@ public class PatientController {
 	
 	
 	@Autowired
-	PatientService patientService;
+	PatientServiceInterface patientService;
 	
 	/*
 	 * get patient detail controller 
@@ -53,7 +53,7 @@ public class PatientController {
 	@RequestMapping(value = "/delete")
 	public List<PatientDetail> deletePatient(@RequestParam String id){
 		log.info("delete patient details for id ","{}",id);
-		return patientService.deletePatientService(id);
+		return patientService.patients(id);
 	}
 	
 	/*

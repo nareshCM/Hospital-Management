@@ -21,7 +21,7 @@ import org.springframework.stereotype.Service;
 
 
 @Service
-public class DoctorServiceImplementation implements DoctorService {
+public abstract class DoctorServiceImplementation implements DoctorServiceInterface {
 	private static final Logger log = LoggerFactory.getLogger(DoctorServiceImplementation.class);
 	
 	@Autowired
@@ -40,6 +40,19 @@ public class DoctorServiceImplementation implements DoctorService {
 			log.error("get doctor details service - No data available");
 			throw new DataNotFoundException("No data available");
 		}
+	}
+	
+	@Override
+	public List<DoctorDetail> doctors(String specialist) {
+		List<DoctorDetail> foundRecord = doctorRepo.findBySpecialist(specialist);
+		if(foundRecord.size() > 0) {
+			log.info("find doctor details service is success");
+			return foundRecord;
+		}else {
+			log.error("find doctor details service - No matching record found");
+			throw new DataNotFoundException("No matching record found");
+		}
+		
 	}
 	
 	
@@ -63,18 +76,18 @@ public class DoctorServiceImplementation implements DoctorService {
 	/*
 	 * to find doctors based on their specialist service 
 	 */
-	@Override
-	public List<DoctorDetail> findDoctorService(String specialist) {
-		List<DoctorDetail> foundRecord = doctorRepo.findBySpecialist(specialist);
-		if(foundRecord.size() > 0) {
-			log.info("find doctor details service is success");
-			return foundRecord;
-		}else {
-			log.error("find doctor details service - No matching record found");
-			throw new DataNotFoundException("No matching record found");
-		}
-		
-	}
+//	@Override
+//	public List<DoctorDetail> findDoctorService(String specialist) {
+//		List<DoctorDetail> foundRecord = doctorRepo.findBySpecialist(specialist);
+//		if(foundRecord.size() > 0) {
+//			log.info("find doctor details service is success");
+//			return foundRecord;
+//		}else {
+//			log.error("find doctor details service - No matching record found");
+//			throw new DataNotFoundException("No matching record found");
+//		}
+//		
+//	}
 	
 	
 	/*

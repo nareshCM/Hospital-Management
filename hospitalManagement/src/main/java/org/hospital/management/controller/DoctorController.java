@@ -3,7 +3,7 @@ package org.hospital.management.controller;
 import java.util.List;
 
 import org.hospital.management.model.DoctorDetail;
-import org.hospital.management.service.DoctorService;
+import org.hospital.management.service.DoctorServiceInterface;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,7 +27,7 @@ public class DoctorController {
 	private static final Logger log = LoggerFactory.getLogger(DoctorController.class);
 	
 	@Autowired
-	DoctorService doctorService;
+	DoctorServiceInterface doctorService;
 	
 	/*
 	 * get doctor detail controller 
@@ -53,7 +53,7 @@ public class DoctorController {
 	@GetMapping(value = "/find")
 	public List<DoctorDetail> findDoctor(@RequestParam(value = "specialist") String specialist){
 		log.info("get doctor details based on specialist ","{}",specialist);
-		List<DoctorDetail> specialistMatched = doctorService.findDoctorService(specialist);
+		List<DoctorDetail> specialistMatched = doctorService.doctors(specialist);
 		return specialistMatched;
 	}
 	

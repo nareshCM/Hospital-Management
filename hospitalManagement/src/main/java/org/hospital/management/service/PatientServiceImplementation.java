@@ -23,7 +23,7 @@ import org.springframework.stereotype.Service;
 
 
 @Service
-public class PatientServiceImplementation implements PatientService {
+public abstract class PatientServiceImplementation implements PatientServiceInterface {
 	private static final Logger log = LoggerFactory.getLogger(PatientServiceImplementation.class);
 	
 	@Autowired
@@ -66,8 +66,26 @@ public class PatientServiceImplementation implements PatientService {
 	/*
 	 * to delete a patient by id service 
 	 */
+//	@Override
+//	public List<PatientDetail> deletePatientService(String id){
+//		try {
+//			patientRepo.deleteById(id);
+//			if(noOfRecords() >0) {
+//				log.info("delete patient details service is success");
+//				return patients();
+//			}else {
+//				log.error("delete patient details service - No data available");
+//				throw new DataNotFoundException("No data available");
+//			}
+//		}
+//		catch(Exception e) {
+//			log.error("delete patient details service - No match found for the id");
+//			throw new EmptyResultException("No match found for the id");
+//		}
+//	}
+	
 	@Override
-	public List<PatientDetail> deletePatientService(String id){
+	public List<PatientDetail> patients(String id){
 		try {
 			patientRepo.deleteById(id);
 			if(noOfRecords() >0) {

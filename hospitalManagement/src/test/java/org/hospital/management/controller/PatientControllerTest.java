@@ -60,7 +60,7 @@ public class PatientControllerTest {
 		List<PatientDetail> patientDetail = new ArrayList<>();
 		PatientDetail patientfind = new PatientDetail();
 		patientfind.setId("1");
-		doReturn(patientDetail).when(patientServiceImplementation).deletePatientService(patientfind.getId());
+		doReturn(patientDetail).when(patientServiceImplementation).patients(patientfind.getId());
 		mockMvc.perform(get("/patient/delete?id=/{id}",1L)).andExpect(status().isOk());
 	}
 }

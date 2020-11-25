@@ -71,7 +71,7 @@ public class DoctorControllerTest {
 		List<DoctorDetail> doctorDetail = new ArrayList<>();
 		DoctorDetail doctorfind = new DoctorDetail();
 		doctorfind.setSpecialist("cardioc");
-		doReturn(doctorDetail).when(doctorServiceImplementation).findDoctorService(doctorfind.getSpecialist());
+		doReturn(doctorDetail).when(doctorServiceImplementation).doctors(doctorfind.getSpecialist());
 		mockMvc.perform(get("/doctor/find?specialist=/{specialist}", "cardioc")).andExpect(status().isOk());
 	}
 
